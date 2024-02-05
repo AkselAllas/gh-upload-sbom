@@ -16,6 +16,7 @@ try {
   const parent = core.getInput('parent');
   const parentName = core.getInput('parentname');
   const parentVersion = core.getInput('parentversion');
+  const bearerToken = core.getInput('bearertoken');
 
   if (protocol !== "http" && protocol !== "https") {
     throw 'protocol "' + protocol + '" not supported, must be one of: https, http'
@@ -78,7 +79,8 @@ try {
     headers: {
       'X-API-Key': apiKey,
       'Content-Type': 'application/json',
-      'Content-Length': Buffer.byteLength(postData)
+      'Content-Length': Buffer.byteLength(postData),
+      ...(bearerToken !== "" && {'Authorization': "Bearer "+bearerToken})
     }
   }
 
