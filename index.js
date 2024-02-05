@@ -87,7 +87,7 @@ try {
   core.info(`Uploading to Dependency-Track server ${serverHostname}...`);
 
   const req = client.request(requestOptions, (res) => {
-    core.info('Response:', res);
+    core.info('Response:', JSON.stringify(res));
     core.info('Response status code:', res.statusCode);
     if (res.statusCode >= 200 && res.statusCode < 300) {
       core.info('Finished uploading BOM to Dependency-Track server.')
